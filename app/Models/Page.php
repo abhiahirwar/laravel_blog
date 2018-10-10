@@ -6,7 +6,34 @@ use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-	/**
+    protected $fillable = [
+        'title',
+        'slug',
+        'uri',
+        'status',
+        'body',
+        'meta_keywords',
+        'meta_description',
+    ];
+
+    protected $attributes = [
+        'meta_robots_no_index' => '',
+        'meta_robots_no_follow' => '',
+        'is_home' => '1',
+        'css' => '',
+        'js' => '',
+        'template' => 'home',
+        'status' => '1',
+        'meta_description' => 'null',
+        'meta_keywords' => 'null',
+    ];
+	
+    public function uri()
+    {
+        $uri = $this->slug.'/';
+        return $uri;
+    }
+    /**
      * A page has many sections.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
